@@ -1,6 +1,6 @@
 module Dummy where
 
-import Map.Contrib.Dummy.Map (foo)
+import Map.Contrib.Dummy.IntMap (foo)
 
 import Map.IntMap as M
 

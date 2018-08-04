@@ -1,7 +1,7 @@
-name:                map-example
+name:                map-sig-extended
 version:             0.0.0
-synopsis:            Backpack implementation of @map-sig@
-description:         Backpack implementation of @map-sig@
+synopsis:            Backpack signatures for Map-like interfaces
+description:         Backpack signatures for Map-like interfaces
 homepage:            https://github.com/kowainik/containers-backpack
 bug-reports:         https://github.com/kowainik/containers-backpack/issues
 license:             MPL-2.0
@@ -21,10 +21,7 @@ source-repository head
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Dummy
-  build-depends:       base, map-sig, map-containers, map-contrib
-  mixins:              map-contrib (Map.Contrib.Dummy as Map.Contrib.Dummy.IntMap)
-                          requires (Map as Map.IntMap)
-
+  signatures:          Map
+  build-depends:       base, map-sig
   ghc-options:         -Wall -fhide-source-paths
   default-language:   Haskell2010

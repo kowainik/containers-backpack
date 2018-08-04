@@ -1,0 +1,22 @@
+signature Map
+          ( Map
+          , Key
+
+            -- * Update
+          , insert
+          , insertWith
+          , adjust
+          , update
+          , delete
+          , alter
+          ) where
+
+data Map k v
+class Key k
+
+insert     :: Key k => k -> v -> Map k v -> Map k v
+insertWith :: Key k => (v -> v -> v) -> k -> v -> Map k v -> Map k v
+adjust     :: Key k => (a -> a) -> k -> Map k a -> Map k a
+update     :: Key k => (a -> Maybe a) -> k -> Map k a -> Map k a
+delete     :: Key k => k -> Map k v -> Map k v
+alter      :: Key k => (Maybe v -> Maybe v) -> k -> Map k v -> Map k v
