@@ -1,7 +1,9 @@
-{-# LANGUAGE ConstraintKinds   #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE RoleAnnotations   #-}
-{-# LANGUAGE TypeFamilies      #-}
+{-# LANGUAGE ConstraintKinds            #-}
+{-# LANGUAGE DerivingStrategies         #-}
+{-# LANGUAGE FlexibleInstances          #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE RoleAnnotations            #-}
+{-# LANGUAGE TypeFamilies               #-}
 
 module Map.IntMap
        ( Map
@@ -9,6 +11,7 @@ module Map.IntMap
 
        , empty
        , singleton
+       , fromList
 
        , null
        , size
@@ -37,6 +40,7 @@ import qualified Data.IntMap as M
 ----------------------------------------------------------------------------
 
 newtype IntMap k v = IM { unIM :: M.IntMap v }
+    deriving newtype (Show)
 
 class (k ~ Int) => IsInt k
 instance (k ~ Int) => IsInt k
@@ -55,6 +59,9 @@ empty = IM M.empty
 
 singleton :: Key k => k -> v -> Map k v
 singleton k = IM . M.singleton k
+
+fromList :: Key k => [(k, v)] -> Map k v
+fromList = IM . M.fromList
 
 null :: Map k v -> Bool
 null = M.null . unIM

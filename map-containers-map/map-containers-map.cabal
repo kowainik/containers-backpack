@@ -1,4 +1,4 @@
-name:                map-example
+name:                map-containers-map
 version:             0.0.0
 synopsis:            Backpack implementation of @map-sig@
 description:         Backpack implementation of @map-sig@
@@ -19,12 +19,12 @@ source-repository head
   type:                git
   location:            https://github.com/kowainik/containers-backpack.git
 
-executable map-exe
-  hs-source-dirs:      app
-  main-is:             Main.hs
-  build-depends:       base, map-containers-intmap, map-contrib
-  mixins:              map-contrib (Map.Contrib.Group as Map.Contrib.Group.IntMap)
-                          requires (Map as Map.IntMap)
+library
+  hs-source-dirs:      src
 
-  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
-  default-language:    Haskell2010
+  exposed-modules:     Map.Map
+  reexported-modules:  Map.Map as Map
+
+  build-depends:       base, containers
+  ghc-options:         -Wall -fhide-source-paths
+  default-language:   Haskell2010

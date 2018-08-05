@@ -1,4 +1,4 @@
-name:                map-containers
+name:                map-containers-intmap
 version:             0.0.0
 synopsis:            Backpack implementation of @map-sig@
 description:         Backpack implementation of @map-sig@
@@ -22,8 +22,8 @@ source-repository head
 library
   hs-source-dirs:      src
 
-  exposed-modules:     Map.Map
-                       Map.IntMap
+  exposed-modules:     Map.IntMap
+  reexported-modules:  Map.IntMap as Map
 
   build-depends:       base, containers
   ghc-options:         -Wall -fhide-source-paths

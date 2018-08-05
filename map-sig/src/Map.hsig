@@ -6,6 +6,7 @@ signature Map
             -- * Construction
           , empty
           , singleton
+          , fromList
 
             -- * Query
           , null
@@ -25,10 +26,12 @@ import Prelude hiding (lookup, null)
 data Map k v
 class Key k
 
+instance (Show k, Show v) => Show (Map k v)
+
 empty         :: Map k v
 singleton     :: Key k => k -> v -> Map k v
+fromList      :: Key k => [(k, v)] -> Map k v
 
--- TODO: construction from list
 -- TODO: construction from corresponding sets
 
 null          :: Map k v -> Bool
