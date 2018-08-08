@@ -5,7 +5,7 @@
 {-# LANGUAGE RoleAnnotations            #-}
 {-# LANGUAGE TypeFamilies               #-}
 
-module Map.IntMap
+module Map.Int
        ( Map
        , Key
 
@@ -33,21 +33,13 @@ module Map.IntMap
 
 import Prelude hiding (lookup, null)
 
-import qualified Data.IntMap as M
-
-----------------------------------------------------------------------------
--- Internals
-----------------------------------------------------------------------------
+import qualified Data.IntMap.Strict as M
 
 newtype Map k v = IM { unIM :: M.IntMap v }
     deriving newtype (Show)
 
 class (k ~ Int) => Key k
 instance (k ~ Int) => Key k
-
-----------------------------------------------------------------------------
--- Implementation
-----------------------------------------------------------------------------
 
 empty :: Map k v
 empty = IM M.empty

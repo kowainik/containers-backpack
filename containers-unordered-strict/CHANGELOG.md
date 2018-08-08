@@ -1,7 +1,7 @@
 Change log
 ==========
 
-`map-sig` uses [PVP Versioning][1].
+`containers-unordered-strict` uses [PVP Versioning][1].
 The change log is available [on GitHub][2].
 
 0.0.0

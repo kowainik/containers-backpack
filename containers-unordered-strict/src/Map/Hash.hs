@@ -1,6 +1,9 @@
-{-# LANGUAGE ConstraintKinds #-}
+{-# LANGUAGE ConstraintKinds      #-}
+{-# LANGUAGE FlexibleInstances    #-}
+{-# LANGUAGE MonoLocalBinds       #-}
+{-# LANGUAGE UndecidableInstances #-}
 
-module Map.Map
+module Map.Hash
        ( Map
        , Key
 
@@ -28,58 +31,62 @@ module Map.Map
 
 import Prelude hiding (lookup, null)
 
-import qualified Data.Map as M
+import Data.Hashable (Hashable)
 
-type Map = M.Map
-type Key = Ord
+import qualified Data.HashMap.Strict as HM
+
+type Map = HM.HashMap
+
+class (Eq k, Hashable k) => Key k
+instance (Eq k, Hashable k) => Key k
 
 empty :: Map k v
-empty = M.empty
+empty = HM.empty
 
 singleton :: Key k => k -> v -> Map k v
-singleton = M.singleton
+singleton = HM.singleton
 
 fromList :: Key k => [(k, v)] -> Map k v
-fromList = M.fromList
+fromList = HM.fromList
 
 null :: Map k v -> Bool
-null = M.null
+null = HM.null
 
 size :: Map k v -> Int
-size = M.size
+size = HM.size
 
 member :: Key k => k -> Map k a -> Bool
-member = M.member
+member = HM.member
 
 lookup :: Key k => k -> Map k v -> Maybe v
-lookup = M.lookup
+lookup = HM.lookup
 
 lookupDefault :: Key k => v -> k -> Map k v -> v
-lookupDefault = M.findWithDefault
+lookupDefault = HM.lookupDefault
 
 toList :: Map k v -> [(k, v)]
-toList = M.toList
+toList = HM.toList
 
 keys :: Map k v -> [k]
-keys = M.keys
+keys = HM.keys
 
 elems :: Map k v -> [v]
-elems = M.elems
+elems = HM.elems
 
 insert :: Key k => k -> v -> Map k v -> Map k v
-insert = M.insert
+insert = HM.insert
 
 insertWith :: Key k => (v -> v -> v) -> k -> v -> Map k v -> Map k v
-insertWith = M.insertWith
+insertWith = HM.insertWith
 
 adjust :: Key k => (a -> a) -> k -> Map k a -> Map k a
-adjust = M.adjust
+adjust = HM.adjust
 
 update :: Key k => (a -> Maybe a) -> k -> Map k a -> Map k a
-update = M.update
+update = HM.update
 
 delete :: Key k => k -> Map k v -> Map k v
-delete = M.delete
+delete = HM.delete
 
 alter :: Key k => (Maybe v -> Maybe v) -> k -> Map k v -> Map k v
-alter = M.alter
+alter = HM.alter

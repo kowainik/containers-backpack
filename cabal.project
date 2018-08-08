@@ -1,7 +1,7 @@
-packages: map-sig
-          map-sig-extended
-          map-containers-intmap
-          map-containers-map
-          map-unordered
-          map-contrib
-          map-example
+packages: containers-sig-readonly
+          containers-sig
+          containers-ordered-strict
+          containers-int-strict
+          containers-unordered-strict
+          containers-contrib
+          containers-example

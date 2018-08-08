@@ -1,7 +1,7 @@
 Change log
 ==========
 
-`map-unordered` uses [PVP Versioning][1].
+`containers-int-strict` uses [PVP Versioning][1].
 The change log is available [on GitHub][2].
 
 0.0.0

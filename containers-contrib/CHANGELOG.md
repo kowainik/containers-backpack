@@ -1,7 +1,7 @@
 Change log
 ==========
 
-`map-containers-map` uses [PVP Versioning][1].
+`containers-contrib` uses [PVP Versioning][1].
 The change log is available [on GitHub][2].
 
 0.0.0
