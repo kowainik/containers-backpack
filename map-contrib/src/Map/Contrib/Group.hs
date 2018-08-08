@@ -1,3 +1,4 @@
+{-# LANGUAGE MonoLocalBinds      #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
 module Map.Contrib.Group

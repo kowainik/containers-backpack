@@ -1,6 +1,7 @@
 packages: map-sig
           map-sig-extended
-          map-containers
+          map-containers-intmap
+          map-containers-map
           map-unordered
           map-contrib
           map-example

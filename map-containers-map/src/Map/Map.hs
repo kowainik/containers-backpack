@@ -6,6 +6,7 @@ module Map.Map
 
        , empty
        , singleton
+       , fromList
 
        , null
        , size
@@ -37,6 +38,9 @@ empty = M.empty
 
 singleton :: Key k => k -> v -> Map k v
 singleton = M.singleton
+
+fromList :: Key k => [(k, v)] -> Map k v
+fromList = M.fromList
 
 null :: Map k v -> Bool
 null = M.null

@@ -1,3 +1,5 @@
+{-# LANGUAGE MonoLocalBinds #-}
+
 module Map.Contrib.Dummy
        ( foo
        ) where
