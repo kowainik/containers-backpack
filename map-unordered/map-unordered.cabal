@@ -23,6 +23,7 @@ library
   hs-source-dirs:      src
 
   exposed-modules:     Map.HashMap
+  reexported-modules:  Map.HashMap as Map
 
   build-depends:       base
                      , hashable

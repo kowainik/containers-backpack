@@ -39,20 +39,15 @@ import qualified Data.IntMap as M
 -- Internals
 ----------------------------------------------------------------------------
 
-newtype IntMap k v = IM { unIM :: M.IntMap v }
+newtype Map k v = IM { unIM :: M.IntMap v }
     deriving newtype (Show)
 
-class (k ~ Int) => IsInt k
-instance (k ~ Int) => IsInt k
+class (k ~ Int) => Key k
+instance (k ~ Int) => Key k
 
 ----------------------------------------------------------------------------
 -- Implementation
 ----------------------------------------------------------------------------
-
--- TODO: user coerce here
-
-type Map = IntMap
-type Key = IsInt
 
 empty :: Map k v
 empty = IM M.empty

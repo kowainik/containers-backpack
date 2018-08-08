@@ -9,6 +9,7 @@ module Map.HashMap
 
        , empty
        , singleton
+       , fromList
 
        , null
        , size
@@ -35,24 +36,26 @@ import Data.Hashable (Hashable)
 import qualified Data.HashMap.Strict as HM
 
 ----------------------------------------------------------------------------
--- Internals
+-- Types
 ----------------------------------------------------------------------------
 
-class (Eq k, Hashable k) => Hash k
-instance (Eq k, Hashable k) => Hash k
+type Map = HM.HashMap
+
+class (Eq k, Hashable k) => Key k
+instance (Eq k, Hashable k) => Key k
 
 ----------------------------------------------------------------------------
 -- Implementation
 ----------------------------------------------------------------------------
-
-type Map = HM.HashMap
-type Key = Hash
 
 empty :: Map k v
 empty = HM.empty
 
 singleton :: Key k => k -> v -> Map k v
 singleton = HM.singleton
+
+fromList :: Key k => [(k, v)] -> Map k v
+fromList = HM.fromList
 
 null :: Map k v -> Bool
 null = HM.null
