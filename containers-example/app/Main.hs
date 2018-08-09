@@ -1,10 +1,8 @@
 module Main where
 
-
-import qualified Map.Contrib.Group.HashMap as HM (groupBy)
-import qualified Map.Contrib.Group.IntMap as IM (groupBy)
-import qualified Map.Contrib.Group.Map as M (groupBy)
-
+import qualified Map.Contrib.Group.Hash as HM (groupBy)
+import qualified Map.Contrib.Group.Int as IM (groupBy)
+import qualified Map.Contrib.Group.Ord as M (groupBy)
 
 main :: IO ()
 main = do

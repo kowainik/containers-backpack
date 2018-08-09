@@ -1,9 +1,6 @@
-{-# LANGUAGE ConstraintKinds      #-}
-{-# LANGUAGE FlexibleInstances    #-}
-{-# LANGUAGE MonoLocalBinds       #-}
-{-# LANGUAGE UndecidableInstances #-}
+{-# LANGUAGE ConstraintKinds #-}
 
-module Map.HashMap
+module Map.Ord
        ( Map
        , Key
 
@@ -31,70 +28,58 @@ module Map.HashMap
 
 import Prelude hiding (lookup, null)
 
-import Data.Hashable (Hashable)
+import qualified Data.Map.Strict as M
 
-import qualified Data.HashMap.Strict as HM
-
-----------------------------------------------------------------------------
--- Types
-----------------------------------------------------------------------------
-
-type Map = HM.HashMap
-
-class (Eq k, Hashable k) => Key k
-instance (Eq k, Hashable k) => Key k
-
-----------------------------------------------------------------------------
--- Implementation
-----------------------------------------------------------------------------
+type Map = M.Map
+type Key = Ord
 
 empty :: Map k v
-empty = HM.empty
+empty = M.empty
 
 singleton :: Key k => k -> v -> Map k v
-singleton = HM.singleton
+singleton = M.singleton
 
 fromList :: Key k => [(k, v)] -> Map k v
-fromList = HM.fromList
+fromList = M.fromList
 
 null :: Map k v -> Bool
-null = HM.null
+null = M.null
 
 size :: Map k v -> Int
-size = HM.size
+size = M.size
 
 member :: Key k => k -> Map k a -> Bool
-member = HM.member
+member = M.member
 
 lookup :: Key k => k -> Map k v -> Maybe v
-lookup = HM.lookup
+lookup = M.lookup
 
 lookupDefault :: Key k => v -> k -> Map k v -> v
-lookupDefault = HM.lookupDefault
+lookupDefault = M.findWithDefault
 
 toList :: Map k v -> [(k, v)]
-toList = HM.toList
+toList = M.toList
 
 keys :: Map k v -> [k]
-keys = HM.keys
+keys = M.keys
 
 elems :: Map k v -> [v]
-elems = HM.elems
+elems = M.elems
 
 insert :: Key k => k -> v -> Map k v -> Map k v
-insert = HM.insert
+insert = M.insert
 
 insertWith :: Key k => (v -> v -> v) -> k -> v -> Map k v -> Map k v
-insertWith = HM.insertWith
+insertWith = M.insertWith
 
 adjust :: Key k => (a -> a) -> k -> Map k a -> Map k a
-adjust = HM.adjust
+adjust = M.adjust
 
 update :: Key k => (a -> Maybe a) -> k -> Map k a -> Map k a
-update = HM.update
+update = M.update
 
 delete :: Key k => k -> Map k v -> Map k v
-delete = HM.delete
+delete = M.delete
 
 alter :: Key k => (Maybe v -> Maybe v) -> k -> Map k v -> Map k v
-alter = HM.alter
+alter = M.alter
