@@ -40,7 +40,7 @@ type Map = HM.HashMap
 class (Eq k, Hashable k) => Key k
 instance (Eq k, Hashable k) => Key k
 
-empty :: Map k v
+empty :: Key k => Map k v
 empty = HM.empty
 
 singleton :: Key k => k -> v -> Map k v
@@ -64,10 +64,10 @@ lookup = HM.lookup
 lookupDefault :: Key k => v -> k -> Map k v -> v
 lookupDefault = HM.lookupDefault
 
-toList :: Map k v -> [(k, v)]
+toList :: Key k => Map k v -> [(k, v)]
 toList = HM.toList
 
-keys :: Map k v -> [k]
+keys :: Key k => Map k v -> [k]
 keys = HM.keys
 
 elems :: Map k v -> [v]

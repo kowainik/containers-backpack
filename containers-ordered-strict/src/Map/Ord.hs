@@ -33,7 +33,7 @@ import qualified Data.Map.Strict as M
 type Map = M.Map
 type Key = Ord
 
-empty :: Map k v
+empty :: Key k => Map k v
 empty = M.empty
 
 singleton :: Key k => k -> v -> Map k v
@@ -57,10 +57,10 @@ lookup = M.lookup
 lookupDefault :: Key k => v -> k -> Map k v -> v
 lookupDefault = M.findWithDefault
 
-toList :: Map k v -> [(k, v)]
+toList :: Key k => Map k v -> [(k, v)]
 toList = M.toList
 
-keys :: Map k v -> [k]
+keys :: Key k => Map k v -> [k]
 keys = M.keys
 
 elems :: Map k v -> [v]
