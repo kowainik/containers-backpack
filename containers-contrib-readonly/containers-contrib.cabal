@@ -1,11 +1,9 @@
-name:                containers-contrib
+name:                containers-contrib-readonly
 version:             0.0.0
-synopsis:            Different functions implemented via general containers-sig interface
-description:         Different functions implemented via general containers-sig interface
+synopsis:            Different functions implemented via general containers-sig-readonly interface
+description:         Different functions implemented via general containers-sig-readonly interface
 homepage:            https://github.com/kowainik/containers-backpack
 bug-reports:         https://github.com/kowainik/containers-backpack/issues
-license:             MPL-2.0
-license-file:        LICENSE
 author:              Kowainik
 maintainer:          xrom.xkov@gmail.com
 copyright:           2018 Kowainik
@@ -21,12 +19,9 @@ source-repository head
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Map.Contrib.Dummy
-                       Map.Contrib.Group
-                       Map.Contrib.Laws
+  exposed-modules:     Map.Contrib.Laws
 
   build-depends:       base
-                     , containers-sig
                      , containers-sig-readonly
   ghc-options:         -Wall -fhide-source-paths
   default-language:    Haskell2010

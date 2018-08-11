@@ -3,5 +3,7 @@ packages: containers-sig-readonly
           containers-ordered-strict
           containers-int-strict
           containers-unordered-strict
+          containers-primitive
+          containers-contrib-readonly
           containers-contrib
           containers-example

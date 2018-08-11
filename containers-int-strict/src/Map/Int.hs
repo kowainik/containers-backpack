@@ -36,12 +36,12 @@ import Prelude hiding (lookup, null)
 import qualified Data.IntMap.Strict as M
 
 newtype Map k v = IM { unIM :: M.IntMap v }
-    deriving newtype (Show)
+    deriving newtype (Show, Eq)
 
 class (k ~ Int) => Key k
 instance (k ~ Int) => Key k
 
-empty :: Map k v
+empty :: Key k => Map k v
 empty = IM M.empty
 
 singleton :: Key k => k -> v -> Map k v
