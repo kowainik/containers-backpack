@@ -38,8 +38,7 @@ import qualified Data.IntMap.Strict as M
 newtype Map k v = IM { unIM :: M.IntMap v }
     deriving newtype (Show, Eq)
 
-class (k ~ Int) => Key k
-instance (k ~ Int) => Key k
+type Key = (~) Int
 
 empty :: Key k => Map k v
 empty = IM M.empty

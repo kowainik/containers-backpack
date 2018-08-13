@@ -1,3 +1,6 @@
+{-# LANGUAGE MonoLocalBinds #-}
+{-# LANGUAGE TypeFamilies   #-}
+
 module Map.Contrib.Laws
        ( singletonFromList
        ) where

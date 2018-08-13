@@ -21,8 +21,7 @@ source-repository head
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Map.Contrib.Dummy
-                       Map.Contrib.Group
+  exposed-modules:     Map.Contrib.Group
                        Map.Contrib.Laws
 
   build-depends:       base
