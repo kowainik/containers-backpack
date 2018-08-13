@@ -1,5 +1,6 @@
 {-# LANGUAGE MonoLocalBinds      #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE TypeFamilies        #-}
 
 module Map.Contrib.Group
        ( groupBy
