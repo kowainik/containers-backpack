@@ -1,5 +1,6 @@
 # containers-backpack
 
+![backpack 1](https://user-images.githubusercontent.com/4276606/44077109-23f24b62-9fd5-11e8-8069-b6ca9e45db79.png)
 [![MPL-2.0 license](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](https://github.com/kowainik/containers-backpack/blob/master/LICENSE)
 [![Build status](https://secure.travis-ci.org/kowainik/containers-backpack.svg)](https://travis-ci.org/kowainik/containers-backpack)
 
@@ -14,3 +15,7 @@ Structure of this repository:
 * `containers-contrib-readonly`: general functions for maps implemented using `containers-sig-readonly` package
 * `containers-contrib`: general functions for maps implemented using `containers-sig-readonly` and `containers-sig` packages
 * `containers-example`: package that mixes signatures and different implementations
+
+### Acknowledgement
+
+Icons made by [Freepik](http://www.freepik.com) from [www.flaticon.com](https://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
