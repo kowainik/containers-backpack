@@ -4,6 +4,10 @@
 [![MPL-2.0 license](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](https://github.com/kowainik/containers-backpack/blob/master/LICENSE)
 [![Build status](https://secure.travis-ci.org/kowainik/containers-backpack.svg)](https://travis-ci.org/kowainik/containers-backpack)
 
+> _You can't just carry everyone else's hopes and fears around in your backpack and expect to stand up straight._
+>
+> David Kirk
+
 See detailed description in the blog post:
 
 * [Picnic: put containers into a Backpack](https://kowainik.github.io/posts/2018-08-19-picnic-put-containers-into-a-backpack)
