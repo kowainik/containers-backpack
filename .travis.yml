@@ -22,6 +22,17 @@ matrix:
         - ghc-8.4.3
         - cabal-install-head
 
+  - ghc: 8.6.1
+    env: GHCVER='8.6.1' CABALVER='head'
+    os: linux
+    addons:
+      apt:
+        sources:
+        - hvr-ghc
+        packages:
+        - ghc-8.6.1
+        - cabal-install-head
+
 
 install:
 - export PATH="/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$PATH"
