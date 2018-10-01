@@ -33,7 +33,7 @@ import qualified Data.Map.Strict as M
 type Map = M.Map
 type Key = Ord
 
-empty :: Key k => Map k v
+empty :: Map k v
 empty = M.empty
 
 singleton :: Key k => k -> v -> Map k v

@@ -30,7 +30,7 @@ instance (Show k, Show v) => Show (Map k v)
 instance (  Eq k,   Eq v) =>   Eq (Map k v)
 
 -- TODO: primitive-containers don't have empty
-empty         :: Key k => Map k v
+empty         :: Map k v
 singleton     :: Key k => k -> v -> Map k v
 fromList      :: Key k => [(k, v)] -> Map k v
 

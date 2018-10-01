@@ -40,7 +40,7 @@ newtype Map k v = IM { unIM :: M.IntMap v }
 
 type Key = (~) Int
 
-empty :: Key k => Map k v
+empty :: Map k v
 empty = IM M.empty
 
 singleton :: Key k => k -> v -> Map k v
