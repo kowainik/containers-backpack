@@ -30,8 +30,8 @@ import qualified GHC.Exts as L
 type Map = M.Map
 type Key = Ord
 
-empty :: Key k => Map k v
-empty = fromList []
+empty :: Map k v
+empty = M.empty
 
 singleton :: Key k => k -> v -> Map k v
 singleton = M.singleton

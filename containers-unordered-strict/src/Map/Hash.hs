@@ -40,7 +40,7 @@ type Map = HM.HashMap
 class (Eq k, Hashable k) => Key k
 instance (Eq k, Hashable k) => Key k
 
-empty :: Key k => Map k v
+empty :: Map k v
 empty = HM.empty
 
 singleton :: Key k => k -> v -> Map k v
