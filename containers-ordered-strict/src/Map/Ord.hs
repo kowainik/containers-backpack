@@ -12,10 +12,10 @@ module Map.Ord
        , M.size
        , M.member
        , M.lookup
-       , M.findWithDefault
+       , lookupDefault
 
-       , M.toList
-       , M.keys
+       , toList
+       , keys
        , M.elems
 
        , M.insert
@@ -26,9 +26,16 @@ module Map.Ord
        , M.alter
        ) where
 
-import Prelude hiding (lookup, null)
-
 import qualified Data.Map.Strict as M
 
 type Map = M.Map
 type Key = Ord
+
+lookupDefault :: Key k => v -> k -> Map k v -> v
+lookupDefault = M.findWithDefault
+
+toList :: Key k => Map k v -> [(k, v)]
+toList = M.toList
+
+keys :: Key k => Map k v -> [k]
+keys = M.keys
