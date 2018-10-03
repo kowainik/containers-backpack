@@ -5,7 +5,7 @@ module Map.Ord
        , Key
 
        , M.empty
-       , M.singleton
+       , singleton
        , M.fromList
 
        , M.null
@@ -41,3 +41,6 @@ toList = M.toList
 
 keys :: Key k => Map k v -> [k]
 keys = M.keys
+
+singleton :: Key k => k -> v -> Map k v
+singleton = M.singleton
