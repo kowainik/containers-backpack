@@ -43,7 +43,7 @@ lookupDefault :: Key k => v -> k -> Map k v -> v
 lookupDefault def k = fromMaybe def . M.lookup k
 
 toList :: Key k => Map k v -> [(k, v)]
-toList = toList
+toList = L.toList
 
 keys :: Key k => Map k v -> [k]
 keys = map fst . toList
