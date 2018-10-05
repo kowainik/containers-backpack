@@ -5,14 +5,14 @@ module Map.Prim
        ( Map
        , Key
 
-       , empty
+       , M.empty
        , singleton
-       , fromList
+       , M.fromList
 
        , null
-       , size
+       , M.size
        , member
-       , lookup
+       , M.lookup
        , lookupDefault
 
        , toList
@@ -30,32 +30,20 @@ import qualified GHC.Exts as L
 type Map = M.Map
 type Key = Ord
 
-empty :: Map k v
-empty = M.empty
-
 singleton :: Key k => k -> v -> Map k v
 singleton = M.singleton
-
-fromList :: Key k => [(k, v)] -> Map k v
-fromList = L.fromList
 
 null :: Map k v -> Bool
 null = (== 0) . size
 
-size :: Map k v -> Int
-size = M.size
-
 member :: Key k => k -> Map k a -> Bool
-member k = isJust . lookup k
-
-lookup :: Key k => k -> Map k v -> Maybe v
-lookup = M.lookup
+member k = isJust . M.lookup k
 
 lookupDefault :: Key k => v -> k -> Map k v -> v
-lookupDefault def k = fromMaybe def . lookup k
+lookupDefault def k = fromMaybe def . M.lookup k
 
 toList :: Key k => Map k v -> [(k, v)]
-toList = L.toList
+toList = toList
 
 keys :: Key k => Map k v -> [k]
 keys = map fst . toList
