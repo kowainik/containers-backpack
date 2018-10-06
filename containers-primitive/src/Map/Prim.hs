@@ -34,7 +34,7 @@ singleton :: Key k => k -> v -> Map k v
 singleton = M.singleton
 
 null :: Map k v -> Bool
-null = (== 0) . size
+null = (== 0) . M.size
 
 member :: Key k => k -> Map k a -> Bool
 member k = isJust . M.lookup k
