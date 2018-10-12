@@ -1,7 +1,4 @@
-{-# LANGUAGE MonoLocalBinds #-}
-{-# LANGUAGE PackageImports #-}
 {-# LANGUAGE TypeFamilies   #-}
-{-# LANGUAGE AllowAmbiguousTypes   #-}
 
 module Map.Contrib.Laws
        ( nullEmpty
