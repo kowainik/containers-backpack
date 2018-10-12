@@ -6,9 +6,22 @@ import           Test.QuickCheck
 import qualified Map.Contrib.Laws.Int as LI
 import qualified Map.Contrib.Laws.Ord as LO
 import qualified Map.Contrib.Laws.Hash as LH
+import qualified Map.Contrib.Laws.Prim as PR
 
 main :: IO ()
 main = do
+  quickCheck PR.nullEmpty
+  quickCheck PR.emptyZeroSized
+  quickCheck (PR.singletonOneSized @Int @String)
+  quickCheck (PR.memberEmptyFalse @Int)
+  quickCheck (PR.newMemberExists @Int @String)
+  quickCheck (PR.newMemberYieldsValidValue @Int @String)
+  quickCheck (PR.lookupDefaultEmpty @Int @String)
+  quickCheck (PR.listToSingleton @Int @String)
+  quickCheck (PR.singletonFromList @Int @String)
+  quickCheck (PR.keysOfSingleton @Int @String)
+  quickCheck (PR.elemsOfSingleton @Int @String)
+
   -- * Laws for Map.Int implementation
   quickCheck LI.nullEmpty
   quickCheck LI.emptyZeroSized
