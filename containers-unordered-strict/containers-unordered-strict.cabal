@@ -28,6 +28,5 @@ library
   build-depends:       base
                      , hashable
                      , unordered-containers
-
   ghc-options:         -Wall -fhide-source-paths
   default-language:    Haskell2010
