@@ -32,6 +32,7 @@ type Key = Ord
 
 singleton :: Key k => k -> v -> Map k v
 singleton = M.singleton
+{-# INLINE singleton #-}
 
 null :: Map k v -> Bool
 null = (== 0) . M.size
@@ -44,6 +45,7 @@ lookupDefault def k = fromMaybe def . M.lookup k
 
 toList :: Key k => Map k v -> [(k, v)]
 toList = L.toList
+{-# INLINE toList #-}
 
 keys :: Key k => Map k v -> [k]
 keys = map fst . toList

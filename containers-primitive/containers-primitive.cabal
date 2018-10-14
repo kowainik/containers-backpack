@@ -25,4 +25,5 @@ library
 
   build-depends:       base, primitive-containers >= 0.3.0
   ghc-options:         -Wall -fhide-source-paths
+                       -fexpose-all-unfoldings
   default-language:    Haskell2010
