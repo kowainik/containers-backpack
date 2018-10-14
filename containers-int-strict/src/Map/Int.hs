@@ -1,8 +1,11 @@
 {-# LANGUAGE ConstraintKinds            #-}
 {-# LANGUAGE DerivingStrategies         #-}
+{-# LANGUAGE ExplicitForAll             #-}
 {-# LANGUAGE FlexibleInstances          #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE RoleAnnotations            #-}
+{-# LANGUAGE ScopedTypeVariables        #-}
+{-# LANGUAGE TypeApplications           #-}
 {-# LANGUAGE TypeFamilies               #-}
 
 module Map.Int
@@ -32,78 +35,62 @@ module Map.Int
        ) where
 
 import Prelude hiding (lookup, null)
+import Data.Coerce (coerce)
 
 import qualified Data.IntMap.Strict as M
 
-newtype Map k v = IM { unIM :: M.IntMap v }
+newtype Map k v = IM (M.IntMap v)
     deriving newtype (Show, Eq)
 
 type Key = (~) Int
 
-empty :: Map k v
-empty = IM M.empty
-{-# INLINE empty #-}
+empty :: forall k v. Map k v
+empty = coerce @(M.IntMap v) M.empty
 
-singleton :: Key k => k -> v -> Map k v
-singleton k = IM . M.singleton k
-{-# INLINE singleton #-}
+singleton :: forall k v. Key k => k -> v -> Map k v
+singleton = coerce @(k -> v -> M.IntMap v) M.singleton
 
-fromList :: Key k => [(k, v)] -> Map k v
-fromList = IM . M.fromList
-{-# INLINE fromList #-}
+fromList :: forall k v. Key k => [(k, v)] -> Map k v
+fromList = coerce @([(k, v)] -> M.IntMap v) M.fromList
 
-null :: Map k v -> Bool
-null = M.null . unIM
-{-# INLINE null #-}
+null :: forall k v. Map k v -> Bool
+null = coerce @(M.IntMap v -> Bool) M.null
 
-size :: Map k v -> Int
-size = M.size . unIM
-{-# INLINE size #-}
+size :: forall k v. Map k v -> Int
+size = coerce @(M.IntMap v -> Int) M.size
 
-member :: Key k => k -> Map k a -> Bool
-member k = M.member k . unIM
-{-# INLINE member #-}
+member :: forall k v. Key k => k -> Map k v -> Bool
+member = coerce @(k -> M.IntMap v -> Bool) M.member
 
-lookup :: Key k => k -> Map k v -> Maybe v
-lookup k = M.lookup k . unIM
-{-# INLINE lookup #-}
+lookup :: forall k v. Key k => k -> Map k v -> Maybe v
+lookup = coerce @(k -> M.IntMap v -> Maybe v) M.lookup
 
-lookupDefault :: Key k => v -> k -> Map k v -> v
-lookupDefault def k = M.findWithDefault def k . unIM
-{-# INLINE lookupDefault #-}
+lookupDefault :: forall k v. Key k => v -> k -> Map k v -> v
+lookupDefault = coerce @(v -> k -> M.IntMap v -> v) M.findWithDefault
 
-toList :: Key k => Map k v -> [(k, v)]
-toList = M.toList . unIM
-{-# INLINE toList #-}
+toList :: forall k v. Key k => Map k v -> [(k, v)]
+toList = coerce @(M.IntMap v -> [(k, v)]) M.toList
 
-keys :: Key k => Map k v -> [k]
-keys = M.keys . unIM
-{-# INLINE keys #-}
+keys :: forall k v. Key k => Map k v -> [k]
+keys = coerce @(M.IntMap v -> [k]) M.keys
 
-elems :: Map k v -> [v]
-elems = M.elems . unIM
-{-# INLINE elems #-}
+elems :: forall k v. Map k v -> [v]
+elems = coerce @(M.IntMap v -> [v]) M.elems
 
-insert :: Key k => k -> v -> Map k v -> Map k v
-insert k v = IM . M.insert k v . unIM
-{-# INLINE insert #-}
+insert :: forall k v. Key k => k -> v -> Map k v -> Map k v
+insert = coerce @(k -> v -> M.IntMap v -> M.IntMap v) M.insert
 
-insertWith :: Key k => (v -> v -> v) -> k -> v -> Map k v -> Map k v
-insertWith f k v= IM . M.insertWith f k v . unIM
-{-# INLINE insertWith #-}
+insertWith :: forall k v. Key k => (v -> v -> v) -> k -> v -> Map k v -> Map k v
+insertWith = coerce @((v -> v -> v) -> k -> v -> M.IntMap v -> M.IntMap v) M.insertWith
 
-adjust :: Key k => (a -> a) -> k -> Map k a -> Map k a
-adjust f k = IM . M.adjust f k . unIM
-{-# INLINE adjust #-}
+adjust :: forall k v. Key k => (v -> v) -> k -> Map k v -> Map k v
+adjust = coerce @((v -> v) -> k -> M.IntMap v -> M.IntMap v) M.adjust
 
-update :: Key k => (a -> Maybe a) -> k -> Map k a -> Map k a
-update f k = IM . M.update f k . unIM
-{-# INLINE update #-}
+update :: forall k v. Key k => (v -> Maybe v) -> k -> Map k v -> Map k v
+update = coerce @((v -> Maybe v) -> k -> M.IntMap v -> M.IntMap v) M.update
 
-delete :: Key k => k -> Map k v -> Map k v
-delete k = IM . M.delete k . unIM
-{-# INLINE delete #-}
+delete :: forall k v. Key k => k -> Map k v -> Map k v
+delete = coerce @(k -> M.IntMap v -> M.IntMap v) M.delete
 
-alter :: Key k => (Maybe v -> Maybe v) -> k -> Map k v -> Map k v
-alter f k = IM . M.alter f k . unIM
-{-# INLINE alter #-}
+alter :: forall k v. Key k => (Maybe v -> Maybe v) -> k -> Map k v -> Map k v
+alter = coerce @((Maybe v -> Maybe v) -> k -> M.IntMap v -> M.IntMap v) M.alter
