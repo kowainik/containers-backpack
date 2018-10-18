@@ -10,7 +10,7 @@ module Map.Contrib.Laws
        , emptyZeroSized
        , singletonOneSized
        , memberEmptyFalse
-       , newMemberExists
+       , memberSingletonSame
        , newMemberYieldsValidValue
        , lookupDefaultEmpty
        , listToSingleton
@@ -45,8 +45,8 @@ singletonOneSized k v = size (singleton k v) == 1
 memberEmptyFalse :: Key k => k -> Bool
 memberEmptyFalse k = not $ member k empty
 
-newMemberExists :: Key k => k -> v -> Bool
-newMemberExists k v = member k $ singleton k v
+memberSingletonSame :: Key k => k -> v -> Bool
+memberSingletonSame k v = member k $ singleton k v
 
 newMemberYieldsValidValue :: (Key k, Eq v) => k -> v -> Bool
 newMemberYieldsValidValue k v = lookup k (singleton k v) == Just v

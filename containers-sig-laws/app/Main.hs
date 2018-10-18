@@ -26,7 +26,7 @@ main = do
   quickCheck $ PR.sizeIsNatural @Int @String
   quickCheck $ PR.singletonOneSized @Int @String
   quickCheck $ PR.memberEmptyFalse @Int
-  quickCheck $ PR.newMemberExists @Int @String
+  quickCheck $ PR.memberSingletonSame @Int @String
   quickCheck $ PR.newMemberYieldsValidValue @Int @String
   quickCheck $ PR.lookupDefaultEmpty @Int @String
   quickCheck $ PR.listToSingleton @Int @String
@@ -42,7 +42,7 @@ main = do
   quickCheck $ LI.sizeIsNatural @Int @String
   quickCheck $ LI.singletonOneSized @Int @String
   quickCheck $ LI.memberEmptyFalse @Int
-  quickCheck $ LI.newMemberExists @Int @String
+  quickCheck $ LI.memberSingletonSame @Int @String
   quickCheck $ LI.newMemberYieldsValidValue @Int @String
   quickCheck $ LI.lookupDefaultEmpty @Int @String
   quickCheck $ LI.listToSingleton @Int @String
@@ -63,7 +63,7 @@ main = do
   quickCheck $ LO.sizeIsNatural @String @String
   quickCheck $ LO.singletonOneSized @String @String
   quickCheck $ LO.memberEmptyFalse @String
-  quickCheck $ LO.newMemberExists @String @String
+  quickCheck $ LO.memberSingletonSame @String @String
   quickCheck $ LO.newMemberYieldsValidValue @String @String
   quickCheck $ LO.lookupDefaultEmpty @String @String
   quickCheck $ LO.listToSingleton @String @String
@@ -84,7 +84,7 @@ main = do
   quickCheck $ LH.sizeIsNatural @String @String
   quickCheck $ LH.singletonOneSized @String @String
   quickCheck $ LH.memberEmptyFalse @String
-  quickCheck $ LH.newMemberExists @String @String
+  quickCheck $ LH.memberSingletonSame @String @String
   quickCheck $ LH.newMemberYieldsValidValue @String @String
   quickCheck $ LH.lookupDefaultEmpty @String @String
   quickCheck $ LH.listToSingleton @String @String
