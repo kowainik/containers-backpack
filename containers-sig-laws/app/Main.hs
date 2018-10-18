@@ -5,9 +5,12 @@ module Main where
 import Control.Monad
 import           Test.QuickCheck
 import qualified Map.Contrib.Laws.Int as LI
+import qualified Map.Contrib.Laws.RO.Int as LI
 import qualified Map.Contrib.Laws.Ord as LO
+import qualified Map.Contrib.Laws.RO.Ord as LO
 import qualified Map.Contrib.Laws.Hash as LH
-import qualified Map.Contrib.Laws.Prim as PR
+import qualified Map.Contrib.Laws.RO.Hash as LH
+import qualified Map.Contrib.Laws.RO.Prim as PR
 
 genSmallPairs :: (Arbitrary l, Arbitrary r) => Gen [(l, r)]
 genSmallPairs = do
