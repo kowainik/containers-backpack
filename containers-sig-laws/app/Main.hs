@@ -33,6 +33,7 @@ main = do
   quickCheck $ PR.singletonFromList @Int @String
   quickCheck $ PR.keysOfSingleton @Int @String
   quickCheck $ PR.elemsOfSingleton @Int @String
+  quickCheck $ PR.lookupMatchMember @Int @String
 
   -- * Laws for Map.Int implementation
   quickCheck LI.nullEmpty
@@ -54,6 +55,7 @@ main = do
   quickCheck $ LI.updateNothingRemoves @Int @String
   quickCheck $ LI.updateJustId @Int @String
   quickCheck $ LI.alterCanInsert @Int @String
+  quickCheck $ LI.lookupMatchMember @Int @String
 
   -- * Laws for Map.Ord implementation
   quickCheck LO.nullEmpty
@@ -75,6 +77,7 @@ main = do
   quickCheck $ LO.updateNothingRemoves @String @String
   quickCheck $ LO.updateJustId @String @String
   quickCheck $ LO.alterCanInsert @String @String
+  quickCheck $ LO.lookupMatchMember @Int @String
 
   -- * Laws for Map.Hash implementation
   quickCheck LH.nullEmpty
@@ -96,3 +99,4 @@ main = do
   quickCheck $ LH.updateNothingRemoves @String @String
   quickCheck $ LH.updateJustId @String @String
   quickCheck $ LH.alterCanInsert @String @String
+  quickCheck $ LH.lookupMatchMember @Int @String

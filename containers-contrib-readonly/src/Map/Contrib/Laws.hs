@@ -16,6 +16,7 @@ module Map.Contrib.Laws
        , listToSingleton
        , keysOfSingleton
        , elemsOfSingleton
+       , lookupMatchMember
        ) where
 
 import Map
@@ -65,3 +66,12 @@ keysOfSingleton k v = keys (singleton k v) == [k]
 
 elemsOfSingleton :: (Key k, Eq k, Eq v) => k -> v -> Bool
 elemsOfSingleton k v = elems (singleton k v) == [v]
+
+lookupMatchMember :: Key k => k -> [(k, v)] -> Bool
+lookupMatchMember k (fromList -> m) = match (lookup k m) (member k m)
+  where
+    match :: Maybe v -> Bool -> Bool
+    match Nothing False = True
+    match Nothing True = False
+    match (Just _) False = False
+    match (Just _) True = True
