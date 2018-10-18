@@ -27,4 +27,5 @@ library
 
   build-depends:       base, containers
   ghc-options:         -Wall -fhide-source-paths
+                       -fexpose-all-unfoldings
   default-language:    Haskell2010

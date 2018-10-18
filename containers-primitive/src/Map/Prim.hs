@@ -32,18 +32,23 @@ type Key = Ord
 
 singleton :: Key k => k -> v -> Map k v
 singleton = M.singleton
+{-# INLINE singleton #-}
 
 null :: Map k v -> Bool
 null = (== 0) . M.size
+{-# INLINE null #-}
 
 member :: Key k => k -> Map k a -> Bool
 member k = isJust . M.lookup k
+{-# INLINE member #-}
 
 lookupDefault :: Key k => v -> k -> Map k v -> v
 lookupDefault def k = fromMaybe def . M.lookup k
+{-# INLINE lookupDefault #-}
 
 toList :: Key k => Map k v -> [(k, v)]
 toList = L.toList
+{-# INLINE toList #-}
 
 keys :: Key k => Map k v -> [k]
 keys = map fst . toList
@@ -53,3 +58,4 @@ elems = M.foldrWithKey' cons []
   where
     cons :: k -> v -> [v] -> [v]
     cons _ = (:)
+{-# INLINE elems #-}

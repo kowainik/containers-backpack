@@ -35,12 +35,16 @@ type Key = Ord
 
 lookupDefault :: Key k => v -> k -> Map k v -> v
 lookupDefault = M.findWithDefault
+{-# INLINE lookupDefault #-}
 
 toList :: Key k => Map k v -> [(k, v)]
 toList = M.toList
+{-# INLINE toList #-}
 
 keys :: Key k => Map k v -> [k]
 keys = M.keys
+{-# INLINE keys #-}
 
 singleton :: Key k => k -> v -> Map k v
 singleton = M.singleton
+{-# INLINE singleton #-}
