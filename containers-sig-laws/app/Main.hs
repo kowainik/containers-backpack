@@ -23,6 +23,7 @@ main = do
   quickCheck $ PR.nullImpliesZeroSize (genSmallPairs @Int @String)
   quickCheck $ PR.nonZeroSizeImpliesNotNull @Int @String
   quickCheck PR.emptyZeroSized
+  quickCheck $ PR.sizeIsNatural @Int @String
   quickCheck $ PR.singletonOneSized @Int @String
   quickCheck $ PR.memberEmptyFalse @Int
   quickCheck $ PR.newMemberExists @Int @String
@@ -38,6 +39,7 @@ main = do
   quickCheck $ LI.nullImpliesZeroSize (genSmallPairs @Int @String)
   quickCheck $ LI.nonZeroSizeImpliesNotNull @Int @String
   quickCheck LI.emptyZeroSized
+  quickCheck $ LI.sizeIsNatural @Int @String
   quickCheck $ LI.singletonOneSized @Int @String
   quickCheck $ LI.memberEmptyFalse @Int
   quickCheck $ LI.newMemberExists @Int @String
@@ -58,6 +60,7 @@ main = do
   quickCheck $ LO.nullImpliesZeroSize (genSmallPairs @Int @String)
   quickCheck $ LO.nonZeroSizeImpliesNotNull @Int @String
   quickCheck LO.emptyZeroSized
+  quickCheck $ LO.sizeIsNatural @String @String
   quickCheck $ LO.singletonOneSized @String @String
   quickCheck $ LO.memberEmptyFalse @String
   quickCheck $ LO.newMemberExists @String @String
@@ -78,6 +81,7 @@ main = do
   quickCheck $ LH.nullImpliesZeroSize (genSmallPairs @Int @String)
   quickCheck $ LH.nonZeroSizeImpliesNotNull @String @String
   quickCheck LH.emptyZeroSized
+  quickCheck $ LH.sizeIsNatural @String @String
   quickCheck $ LH.singletonOneSized @String @String
   quickCheck $ LH.memberEmptyFalse @String
   quickCheck $ LH.newMemberExists @String @String

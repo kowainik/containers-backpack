@@ -6,6 +6,7 @@ module Map.Contrib.Laws
        , nullEmpty
        , nullImpliesZeroSize
        , nonZeroSizeImpliesNotNull
+       , sizeIsNatural
        , emptyZeroSized
        , singletonOneSized
        , memberEmptyFalse
@@ -34,6 +35,9 @@ nonZeroSizeImpliesNotNull (fromList -> m) = size m > 0 ==> not (null m)
 
 emptyZeroSized :: Bool
 emptyZeroSized = size empty == 0
+
+sizeIsNatural :: Key k => [(k, v)] -> Bool
+sizeIsNatural (fromList -> m) = size m >= 0
 
 singletonOneSized :: Key k => k -> v -> Bool
 singletonOneSized k v = size (singleton k v) == 1
