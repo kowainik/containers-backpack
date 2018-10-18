@@ -36,12 +36,15 @@ singleton = M.singleton
 
 null :: Map k v -> Bool
 null = (== 0) . M.size
+{-# INLINE null #-}
 
 member :: Key k => k -> Map k a -> Bool
 member k = isJust . M.lookup k
+{-# INLINE member #-}
 
 lookupDefault :: Key k => v -> k -> Map k v -> v
 lookupDefault def k = fromMaybe def . M.lookup k
+{-# INLINE lookupDefault #-}
 
 toList :: Key k => Map k v -> [(k, v)]
 toList = L.toList
@@ -55,3 +58,4 @@ elems = M.foldrWithKey' cons []
   where
     cons :: k -> v -> [v] -> [v]
     cons _ = (:)
+{-# INLINE elems #-}
