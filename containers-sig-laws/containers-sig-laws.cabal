@@ -31,13 +31,7 @@ executable property-test-exe
                      , containers-contrib
                      , containers-contrib-readonly
 
-  mixins:              containers-contrib (Map.Contrib.Group as Map.Contrib.Group.Int)
-                                 requires (Map as Map.Int)
-                     , containers-contrib (Map.Contrib.Group as Map.Contrib.Group.Ord)
-                                 requires (Map as Map.Ord)
-                     , containers-contrib (Map.Contrib.Group as Map.Contrib.Group.Hash)
-                                 requires (Map as Map.Hash)
-                     , containers-contrib-readonly (Map.Contrib.Laws as Map.Contrib.Laws.RO.Int)
+  mixins:              containers-contrib-readonly (Map.Contrib.Laws as Map.Contrib.Laws.RO.Int)
                                           requires (Map as Map.Int)
                      , containers-contrib (Map.Contrib.Laws as Map.Contrib.Laws.Int)
                                           requires (Map as Map.Int)
