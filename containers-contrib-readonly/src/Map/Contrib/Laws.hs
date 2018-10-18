@@ -1,8 +1,11 @@
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE ViewPatterns #-}
 
 module Map.Contrib.Laws
        ( singletonFromList
        , nullEmpty
+       , nullImpliesZeroSize
+       , nonZeroSizeImpliesNotNull
        , emptyZeroSized
        , singletonOneSized
        , memberEmptyFalse
@@ -16,9 +19,18 @@ module Map.Contrib.Laws
 
 import Map
 import Prelude hiding (lookup, null)
+import           Test.QuickCheck
 
 nullEmpty :: Bool
 nullEmpty = null empty
+
+nullImpliesZeroSize :: Key k => Gen [(k, v)] -> Gen Property
+nullImpliesZeroSize pairs = do
+  m <- fromList <$> pairs
+  pure $ null m ==> size m == 0
+
+nonZeroSizeImpliesNotNull :: Key k => [(k, v)] -> Property
+nonZeroSizeImpliesNotNull (fromList -> m) = size m > 0 ==> not (null m)
 
 emptyZeroSized :: Bool
 emptyZeroSized = size empty == 0

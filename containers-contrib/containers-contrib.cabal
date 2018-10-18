@@ -25,6 +25,7 @@ library
                        Map.Contrib.Laws
 
   build-depends:       base
+                     , QuickCheck
                      , containers-sig
                      , containers-sig-readonly
   ghc-options:         -Wall -fhide-source-paths
