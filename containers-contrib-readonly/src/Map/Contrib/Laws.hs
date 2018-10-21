@@ -5,22 +5,7 @@
 {-# LANGUAGE ViewPatterns        #-}
 
 module Map.Contrib.Laws
-       ( singletonFromList
-       , nullEmpty
-       , nullImpliesZeroSize
-       , nonZeroSizeImpliesNotNull
-       , sizeIsNatural
-       , emptyZeroSized
-       , singletonOneSized
-       , memberEmptyFalse
-       , memberSingletonSame
-       , newMemberYieldsValidValue
-       , lookupDefaultEmpty
-       , listToSingleton
-       , keysOfSingleton
-       , elemsOfSingleton
-       , lookupMatchMember
-       , checkLaws
+       ( checkLaws
        ) where
 
 import Control.Monad (replicateM)

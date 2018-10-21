@@ -4,12 +4,7 @@
 {-# LANGUAGE TypeFamilies        #-}
 
 module Map.Contrib.Laws
-       ( emptyInsertSingleton
-       , insertDeleteEmpty
-       , updateNothingRemoves
-       , updateJustId
-       , alterCanInsert
-       , checkLaws
+       ( checkLaws
        ) where
 
 import Data.Proxy (Proxy)
