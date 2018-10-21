@@ -23,7 +23,6 @@ executable property-test-exe
   hs-source-dirs:      app
   main-is:             Main.hs
   build-depends:       base
-                     , QuickCheck
                      , containers-int-strict
                      , containers-ordered-strict
                      , containers-unordered-strict

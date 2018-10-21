@@ -1,5 +1,8 @@
-{-# LANGUAGE TypeFamilies #-}
-{-# LANGUAGE ViewPatterns #-}
+{-# LANGUAGE RankNTypes          #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE TypeApplications    #-}
+{-# LANGUAGE TypeFamilies        #-}
+{-# LANGUAGE ViewPatterns        #-}
 
 module Map.Contrib.Laws
        ( singletonFromList
@@ -17,11 +20,15 @@ module Map.Contrib.Laws
        , keysOfSingleton
        , elemsOfSingleton
        , lookupMatchMember
+       , checkLaws
        ) where
 
-import Map
+import Control.Monad (replicateM)
+import Data.Proxy (Proxy)
+import Map (Key, elems, empty, fromList, keys, lookup, lookupDefault, member, null, singleton, size,
+            toList)
 import Prelude hiding (lookup, null)
-import           Test.QuickCheck
+import Test.QuickCheck (Arbitrary, Gen, Property, arbitrary, choose, quickCheck, (==>))
 
 nullEmpty :: Bool
 nullEmpty = null empty
@@ -71,7 +78,34 @@ lookupMatchMember :: Key k => k -> [(k, v)] -> Bool
 lookupMatchMember k (fromList -> m) = match (lookup k m) (member k m)
   where
     match :: Maybe v -> Bool -> Bool
-    match Nothing False = True
-    match Nothing True = False
+    match Nothing False  = True
+    match Nothing True   = False
     match (Just _) False = False
-    match (Just _) True = True
+    match (Just _) True  = True
+
+genSmallPairs :: (Key l, Arbitrary l, Arbitrary r) => Gen [(l, r)]
+genSmallPairs = do
+  len <- choose (0, 2)
+  replicateM len $ (,) <$> arbitrary <*> arbitrary
+
+checkLaws
+  :: forall k v. (Key k, Arbitrary k, Arbitrary v, Show k, Show v, Eq k, Eq v)
+  => Proxy k
+  -> Proxy v
+  -> IO ()
+checkLaws _ _ = do
+  quickCheck nullEmpty
+  quickCheck $ nullImpliesZeroSize (genSmallPairs @k @v)
+  quickCheck $ nonZeroSizeImpliesNotNull @k @v
+  quickCheck emptyZeroSized
+  quickCheck $ sizeIsNatural @k @v
+  quickCheck $ singletonOneSized @k @v
+  quickCheck $ memberEmptyFalse @k
+  quickCheck $ memberSingletonSame @k @v
+  quickCheck $ newMemberYieldsValidValue @k @v
+  quickCheck $ lookupDefaultEmpty @k @v
+  quickCheck $ listToSingleton @k @v
+  quickCheck $ singletonFromList @k @v
+  quickCheck $ keysOfSingleton @k @v
+  quickCheck $ elemsOfSingleton @k @v
+  quickCheck $ lookupMatchMember @k @v

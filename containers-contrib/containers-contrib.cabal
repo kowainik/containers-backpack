@@ -27,5 +27,6 @@ library
   build-depends:       base
                      , containers-sig
                      , containers-sig-readonly
+                     , QuickCheck
   ghc-options:         -Wall -fhide-source-paths
   default-language:    Haskell2010
