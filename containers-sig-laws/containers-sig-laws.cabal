@@ -29,6 +29,9 @@ executable property-test-exe
                      , containers-primitive
                      , containers-contrib
                      , containers-contrib-readonly
+                     , text
+                     , QuickCheck
+                     , hashable
 
   mixins:              containers-contrib-readonly (Map.Contrib.Laws as Map.Contrib.Laws.RO.Int)
                                           requires (Map as Map.Int)
