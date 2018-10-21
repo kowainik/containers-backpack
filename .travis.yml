@@ -41,7 +41,7 @@ install:
 - cabal new-build all --enable-tests --enable-benchmarks
 
 script:
-  - echo 'No tests'
+  - cabal new-run property-test-exe
 
 notifications:
   email: false
