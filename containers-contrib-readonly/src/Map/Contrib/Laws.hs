@@ -6,6 +6,9 @@
 
 module Map.Contrib.Laws
        ( checkLaws
+
+       -- * Exported for containers-example module. It demonstrates the law execution.
+       , singletonFromList
        ) where
 
 import Control.Monad (replicateM)
