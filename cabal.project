@@ -7,3 +7,4 @@ packages: containers-sig-readonly
           containers-contrib-readonly
           containers-contrib
           containers-example
+          containers-sig-laws
