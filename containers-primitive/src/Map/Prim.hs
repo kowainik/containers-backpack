@@ -20,6 +20,8 @@ module Map.Prim
        , elems
        ) where
 
+import Control.DeepSeq (NFData (..))
+
 import Prelude hiding (lookup, null)
 
 import Data.Maybe (fromMaybe, isJust)

@@ -23,7 +23,7 @@ library
   exposed-modules:     Map.Prim
   reexported-modules:  Map.Prim as Map
 
-  build-depends:       base, primitive-containers >= 0.3.0
+  build-depends:       base, primitive-containers >= 0.3.0, deepseq
   ghc-options:         -Wall -fhide-source-paths
                        -fexpose-all-unfoldings
   default-language:    Haskell2010
