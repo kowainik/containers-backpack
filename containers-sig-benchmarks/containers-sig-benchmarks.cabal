@@ -1,4 +1,4 @@
-name:                containers-benchmarks
+name:                containers-sig-benchmarks
 version:             0.0.0
 synopsis:            Benchmarks of containers-sig
 description:         Benchmarks of containers-sigUsage example of containers-sig

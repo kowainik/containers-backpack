@@ -8,4 +8,4 @@ packages: containers-sig-readonly
           containers-contrib
           containers-example
           containers-sig-laws
-          containers-benchmarks
+          containers-sig-benchmarks
