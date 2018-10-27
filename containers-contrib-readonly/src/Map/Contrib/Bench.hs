@@ -36,7 +36,4 @@ lookupBench :: forall k. Key k => String -> Map k Int -> [k] -> Benchmark
 lookupBench label m = bench label . whnf (go 0)
   where
     go :: Int -> [k] -> Int
-    go !acc [] = acc
-    go !acc (x:xs) = case lookup x m of
-      Nothing -> go acc xs
-      Just y -> go (acc + y) xs
+    go = foldl' (\a -> (a +) . fromMaybe 0 . flip lookup m)
