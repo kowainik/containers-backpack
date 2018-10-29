@@ -5,7 +5,6 @@ module Main where
 import qualified Map.Contrib.Bench.Int.RO as BIRO
 import qualified Map.Contrib.Bench.Ord.RO as BORO
 import qualified Map.Contrib.Bench.Hash.RO as BHRO
-import Data.Proxy (Proxy (..))
 
 -- Map key type for benchmarks. It can be Int, Char or any
 -- type that obeys to the constraint:
@@ -14,8 +13,8 @@ type K = Int
 
 main :: IO ()
 main = do
-  BIRO.benchmark "intmap" (Proxy @K)
+  BIRO.benchmark @K "intmap"
 
-  BORO.benchmark "ordmap" (Proxy @K)
+  BORO.benchmark @K "ordmap"
 
-  BHRO.benchmark "hashmap" (Proxy @K)
+  BHRO.benchmark @K "hashmap"

@@ -5,6 +5,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE AllowAmbiguousTypes #-}
 
 module Map.Contrib.Bench where
 
@@ -15,9 +16,8 @@ import Relude hiding (fromList, Map)
 benchmark
   :: forall k. (Enum k, Bounded k, Key k, NFData (Map k Int))
   => String
-  -> Proxy k
   -> IO ()
-benchmark label _ = do
+benchmark label = do
   let benchMaxElems = min 1024 (fromEnum (maxBound @k))
   let upBound = foldl' (.) id (replicate benchMaxElems succ) minBound
   let map_keys :: [k] = [minBound..upBound]
