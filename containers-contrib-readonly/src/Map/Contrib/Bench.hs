@@ -21,7 +21,7 @@ benchmark
   => (k, k)
   -> String
   -> IO Benchmark
-benchmark (lower, upper) label = do
+benchmark (lower, upper) structureName = do
   let map_keys :: [k] = [lower..upper]
 
   let mapEntries = zip map_keys [0..]
@@ -32,12 +32,12 @@ benchmark (lower, upper) label = do
 
   pure $
     bgroup
-      label
+      structureName
       [ lookupBench ("lookup/all") m (map fst mapEntries)
       ]
 
 lookupBench :: forall k. Key k => String -> Map k Int -> [k] -> Benchmark
-lookupBench label m = bench label . whnf (go 0)
+lookupBench structureName m = bench structureName . whnf (go 0)
   where
     go :: Int -> [k] -> Int
     go = foldl' (\a -> (a +) . fromMaybe 0 . flip lookup m)
