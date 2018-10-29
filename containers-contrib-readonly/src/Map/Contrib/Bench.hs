@@ -7,7 +7,9 @@
 {-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE AllowAmbiguousTypes #-}
 
-module Map.Contrib.Bench where
+module Map.Contrib.Bench
+  ( benchmark
+  ) where
 
 import Gauge.Main (Benchmark, bench, whnf, bgroup)
 import Relude hiding (fromList, Map)
