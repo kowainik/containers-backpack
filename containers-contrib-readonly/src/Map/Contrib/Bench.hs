@@ -9,9 +9,10 @@
 
 module Map.Contrib.Bench where
 
-import Map
 import Gauge.Main (Benchmark, bench, defaultMain, whnf)
 import Relude hiding (fromList, Map)
+
+import Map
 
 benchmark
   :: forall k. (Enum k, Bounded k, Key k, NFData k)

@@ -8,7 +8,7 @@ import qualified Map.Contrib.Bench.Hash.RO as BHRO
 
 -- Map key type for benchmarks. It can be Int, Char or any
 -- type that obeys to the constraint:
--- (Enum k, Bounded k, Key k, NFData (Map k Int))
+-- (Enum k, Bounded k, Key k, NFData k)
 type K = Int
 
 main :: IO ()
