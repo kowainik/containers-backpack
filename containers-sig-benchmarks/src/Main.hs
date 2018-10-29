@@ -1,5 +1,3 @@
-{-# LANGUAGE TypeApplications #-}
-
 module Main where
 
 import Gauge.Main (defaultMain)
@@ -15,9 +13,17 @@ type K = Int
 
 main :: IO ()
 main = do
+  let
+    lookupRangeLower = 0
+    lookupRangeUpper = 1024
+
+    -- Apply bounds to the given benchmark function
+    apply_bounds f =
+      f (lookupRangeLower, lookupRangeUpper)
+
   defaultMain =<<
     sequence
-      [ BIRO.benchmark @K "intmap"
-      , BORO.benchmark @K "ordmap"
-      , BHRO.benchmark @K "hashmap"
+      [ apply_bounds BIRO.benchmark "intmap"
+      , apply_bounds BORO.benchmark "ordmap"
+      , apply_bounds BHRO.benchmark "hashmap"
       ]

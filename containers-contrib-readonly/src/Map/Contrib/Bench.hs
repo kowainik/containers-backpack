@@ -16,12 +16,11 @@ import Map
 
 benchmark
   :: forall k. (Enum k, Bounded k, Key k, NFData k)
-  => String
+  => (k, k)
+  -> String
   -> IO Benchmark
-benchmark label = do
-  let benchMaxElems = min 1024 (fromEnum (maxBound @k))
-  let upBound = foldl' (.) id (replicate benchMaxElems succ) minBound
-  let map_keys :: [k] = [minBound..upBound]
+benchmark (lower, upper) label = do
+  let map_keys :: [k] = [lower..upper]
 
   let mapEntries = zip map_keys [0..]
 
