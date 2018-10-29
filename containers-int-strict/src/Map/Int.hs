@@ -40,7 +40,7 @@ import qualified Data.IntMap.Strict as M
 import Prelude hiding (lookup, null)
 
 newtype Map k v = IM (M.IntMap v)
-    deriving newtype (Show, Eq)
+    deriving newtype (Show, Eq, NFData)
 
 type Key = (~) Int
 
@@ -111,6 +111,3 @@ delete = coerce @(k -> M.IntMap v -> M.IntMap v) M.delete
 alter :: forall k v. Key k => (Maybe v -> Maybe v) -> k -> Map k v -> Map k v
 alter = coerce @((Maybe v -> Maybe v) -> k -> M.IntMap v -> M.IntMap v) M.alter
 {-# INLINE alter #-}
-
-instance NFData v => NFData (Map k v) where
-  rnf (IM m) = rnf m
