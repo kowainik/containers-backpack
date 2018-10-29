@@ -14,7 +14,7 @@ import Gauge.Main (Benchmark, bench, defaultMain, whnf)
 import Relude hiding (fromList, Map)
 
 benchmark
-  :: forall k. (Enum k, Bounded k, Key k, NFData (Map k Int))
+  :: forall k. (Enum k, Bounded k, Key k, NFData k)
   => String
   -> IO ()
 benchmark label = do

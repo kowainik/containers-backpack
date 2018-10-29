@@ -23,5 +23,6 @@ library
   hs-source-dirs:      src
   signatures:          Map
   build-depends:       base
+                     , deepseq ^>= 1.4
   ghc-options:         -Wall -fhide-source-paths
   default-language:    Haskell2010

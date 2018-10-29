@@ -22,12 +22,14 @@ signature Map
           ) where
 
 import Prelude hiding (lookup, null)
+import Control.DeepSeq (NFData (..))
 
 data Map k v
 class Key k
 
-instance (Show k, Show v) => Show (Map k v)
-instance (  Eq k,   Eq v) =>   Eq (Map k v)
+instance (  Show k,   Show v) =>   Show (Map k v)
+instance (    Eq k,     Eq v) =>     Eq (Map k v)
+instance (NFData k, NFData v) => NFData (Map k v)
 
 empty         :: Map k v
 singleton     :: Key k => k -> v -> Map k v
