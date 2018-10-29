@@ -17,7 +17,7 @@ import Relude hiding (fromList, Map)
 import Map
 
 benchmark
-  :: forall k. (Enum k, Bounded k, Key k, NFData k)
+  :: forall k. (Enum k, Bounded k, Key k, NFData (Map k Int))
   => (k, k)
   -> String
   -> IO Benchmark
