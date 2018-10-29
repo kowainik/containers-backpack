@@ -2,6 +2,8 @@
 
 module Main where
 
+import Gauge.Main (defaultMain)
+
 import qualified Map.Contrib.Bench.Int.RO as BIRO
 import qualified Map.Contrib.Bench.Ord.RO as BORO
 import qualified Map.Contrib.Bench.Hash.RO as BHRO
@@ -13,8 +15,9 @@ type K = Int
 
 main :: IO ()
 main = do
-  BIRO.benchmark @K "intmap"
-
-  BORO.benchmark @K "ordmap"
-
-  BHRO.benchmark @K "hashmap"
+  defaultMain =<<
+    sequence
+      [ BIRO.benchmark @K "intmap"
+      , BORO.benchmark @K "ordmap"
+      , BHRO.benchmark @K "hashmap"
+      ]

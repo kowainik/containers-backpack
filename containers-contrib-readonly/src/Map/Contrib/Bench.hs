@@ -9,7 +9,7 @@
 
 module Map.Contrib.Bench where
 
-import Gauge.Main (Benchmark, bench, defaultMain, whnf)
+import Gauge.Main (Benchmark, bench, whnf, bgroup)
 import Relude hiding (fromList, Map)
 
 import Map
@@ -17,7 +17,7 @@ import Map
 benchmark
   :: forall k. (Enum k, Bounded k, Key k, NFData k)
   => String
-  -> IO ()
+  -> IO Benchmark
 benchmark label = do
   let benchMaxElems = min 1024 (fromEnum (maxBound @k))
   let upBound = foldl' (.) id (replicate benchMaxElems succ) minBound
@@ -29,9 +29,11 @@ benchmark label = do
 
   evaluateNF_ m
 
-  defaultMain
-    [ lookupBench (label <> "-lookup/all") m (map fst mapEntries)
-    ]
+  pure $
+    bgroup
+      label
+      [ lookupBench ("lookup/all") m (map fst mapEntries)
+      ]
 
 lookupBench :: forall k. Key k => String -> Map k Int -> [k] -> Benchmark
 lookupBench label m = bench label . whnf (go 0)

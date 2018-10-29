@@ -23,6 +23,7 @@ executable benchmarks-exe
   hs-source-dirs:      src
   main-is:             Main.hs
   build-depends:       base
+                     , gauge
                      , containers-contrib-readonly
                      , containers-int-strict
                      , containers-ordered-strict
