@@ -1,0 +1,40 @@
+name:                containers-sig-benchmarks
+version:             0.0.0
+synopsis:            Benchmarks of containers-sig
+description:         Benchmarks of containers-sigUsage example of containers-sig
+homepage:            https://github.com/kowainik/containers-backpack
+bug-reports:         https://github.com/kowainik/containers-backpack/issues
+license:             MPL-2.0
+license-file:        LICENSE
+author:              Kowainik
+maintainer:          xrom.xkov@gmail.com
+copyright:           2018 Kowainik
+category:            Backpack, Data, Containers
+build-type:          Simple
+extra-doc-files:     CHANGELOG.md
+cabal-version:       2.0
+tested-with:         GHC == 8.4.3
+
+source-repository head
+  type:                git
+  location:            https://github.com/kowainik/containers-backpack.git
+
+executable benchmarks-exe
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  build-depends:       base
+                     , gauge
+                     , containers-contrib-readonly
+                     , containers-int-strict
+                     , containers-ordered-strict
+                     , containers-unordered-strict
+
+  mixins:              containers-contrib-readonly (Map.Contrib.Bench as Map.Contrib.Bench.Int.RO)
+                                 requires (Map as Map.Int)
+                     , containers-contrib-readonly (Map.Contrib.Bench as Map.Contrib.Bench.Ord.RO)
+                                 requires (Map as Map.Ord)
+                     , containers-contrib-readonly (Map.Contrib.Bench as Map.Contrib.Bench.Hash.RO)
+                                 requires (Map as Map.Hash)
+
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N -fhide-source-paths
+  default-language:    Haskell2010

@@ -34,13 +34,14 @@ module Map.Int
        , alter
        ) where
 
-import Prelude hiding (lookup, null)
+import Control.DeepSeq (NFData (..))
 import Data.Coerce (coerce)
+import Prelude hiding (lookup, null)
 
 import qualified Data.IntMap.Strict as M
 
 newtype Map k v = IM (M.IntMap v)
-    deriving newtype (Show, Eq)
+    deriving newtype (Show, Eq, NFData)
 
 type Key = (~) Int
 
