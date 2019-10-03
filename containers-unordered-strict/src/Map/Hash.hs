@@ -29,11 +29,11 @@ module Map.Hash
        , alter
        ) where
 
+import Data.Hashable (Hashable)
 import Prelude hiding (lookup, null)
 
-import Data.Hashable (Hashable)
-
 import qualified Data.HashMap.Strict as HM
+
 
 type Map = HM.HashMap
 

@@ -18,13 +18,14 @@ import Map (Key, elems, empty, fromList, keys, lookup, lookupDefault, member, nu
 import Prelude hiding (lookup, null)
 import Test.QuickCheck (Arbitrary, Gen, Property, arbitrary, choose, quickCheck, (==>))
 
+
 nullEmpty :: Bool
 nullEmpty = null empty
 
 nullImpliesZeroSize :: Key k => Gen [(k, v)] -> Gen Property
 nullImpliesZeroSize pairs = do
-  m <- fromList <$> pairs
-  pure $ null m ==> size m == 0
+    m <- fromList <$> pairs
+    pure $ null m ==> size m == 0
 
 nonZeroSizeImpliesNotNull :: Key k => [(k, v)] -> Property
 nonZeroSizeImpliesNotNull (fromList -> m) = size m > 0 ==> not (null m)
@@ -73,27 +74,27 @@ lookupMatchMember k (fromList -> m) = match (lookup k m) (member k m)
 
 genSmallPairs :: (Key l, Arbitrary l, Arbitrary r) => Gen [(l, r)]
 genSmallPairs = do
-  len <- choose (0, 2)
-  replicateM len $ (,) <$> arbitrary <*> arbitrary
+    len <- choose (0, 2)
+    replicateM len $ (,) <$> arbitrary <*> arbitrary
 
 checkLaws
-  :: forall k v. (Key k, Arbitrary k, Arbitrary v, Show k, Show v, Eq k, Eq v)
-  => Proxy k
-  -> Proxy v
-  -> IO ()
+    :: forall k v. (Key k, Arbitrary k, Arbitrary v, Show k, Show v, Eq k, Eq v)
+    => Proxy k
+    -> Proxy v
+    -> IO ()
 checkLaws _ _ = do
-  quickCheck nullEmpty
-  quickCheck $ nullImpliesZeroSize (genSmallPairs @k @v)
-  quickCheck $ nonZeroSizeImpliesNotNull @k @v
-  quickCheck emptyZeroSized
-  quickCheck $ sizeIsNatural @k @v
-  quickCheck $ singletonOneSized @k @v
-  quickCheck $ memberEmptyFalse @k
-  quickCheck $ memberSingletonSame @k @v
-  quickCheck $ newMemberYieldsValidValue @k @v
-  quickCheck $ lookupDefaultEmpty @k @v
-  quickCheck $ listToSingleton @k @v
-  quickCheck $ singletonFromList @k @v
-  quickCheck $ keysOfSingleton @k @v
-  quickCheck $ elemsOfSingleton @k @v
-  quickCheck $ lookupMatchMember @k @v
+    quickCheck nullEmpty
+    quickCheck $ nullImpliesZeroSize (genSmallPairs @k @v)
+    quickCheck $ nonZeroSizeImpliesNotNull @k @v
+    quickCheck emptyZeroSized
+    quickCheck $ sizeIsNatural @k @v
+    quickCheck $ singletonOneSized @k @v
+    quickCheck $ memberEmptyFalse @k
+    quickCheck $ memberSingletonSame @k @v
+    quickCheck $ newMemberYieldsValidValue @k @v
+    quickCheck $ lookupDefaultEmpty @k @v
+    quickCheck $ listToSingleton @k @v
+    quickCheck $ singletonFromList @k @v
+    quickCheck $ keysOfSingleton @k @v
+    quickCheck $ elemsOfSingleton @k @v
+    quickCheck $ lookupMatchMember @k @v

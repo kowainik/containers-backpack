@@ -1,47 +1,30 @@
 sudo: true
-language: generic
+language: haskell
 
 git:
   depth: 5
 
+cabal: "3.0"
+
 cache:
   directories:
-  - "$HOME/.cabal"
+  - "$HOME/.cabal/store"
+  - "$HOME/.stack"
+  - "$TRAVIS_BUILD_DIR/.stack-work"
 
 matrix:
   include:
-
-  - ghc: 8.4.3
-    env: GHCVER='8.4.3' CABALVER='head'
-    os: linux
-    addons:
-      apt:
-        sources:
-        - hvr-ghc
-        packages:
-        - ghc-8.4.3
-        - cabal-install-head
-
-  - ghc: 8.6.1
-    env: GHCVER='8.6.1' CABALVER='head'
-    os: linux
-    addons:
-      apt:
-        sources:
-        - hvr-ghc
-        packages:
-        - ghc-8.6.1
-        - cabal-install-head
-
+  - ghc: 8.2.2
+  - ghc: 8.4.4
+  - ghc: 8.6.5
+  - ghc: 8.8.1
 
 install:
-- export PATH="/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$PATH"
-- echo $PATH
-- cabal new-update
-- cabal new-build all --enable-tests --enable-benchmarks
+  - cabal update
+  - cabal build all --enable-tests --enable-benchmarks
 
 script:
-  - cabal new-run property-test-exe
+  - cabal test all --enable-tests
 
 notifications:
   email: false

@@ -27,6 +27,7 @@ import Data.Maybe (fromMaybe, isJust)
 import qualified Data.Map.Lifted.Lifted as M
 import qualified GHC.Exts as L
 
+
 type Map = M.Map
 type Key = Ord
 
@@ -52,6 +53,7 @@ toList = L.toList
 
 keys :: Key k => Map k v -> [k]
 keys = map fst . toList
+{-# INLINE keys #-}
 
 elems :: Map k v -> [v]
 elems = M.foldrWithKey' cons []
