@@ -30,6 +30,7 @@ import Prelude hiding (lookup, null)
 
 import qualified Data.Map.Strict as M
 
+
 type Map = M.Map
 type Key = Ord
 

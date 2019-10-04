@@ -12,6 +12,7 @@ import Map (Key, alter, delete, empty, fromList, insert, singleton, update)
 import Prelude hiding (lookup, null)
 import Test.QuickCheck (Arbitrary, quickCheck)
 
+
 emptyInsertSingleton :: (Key k, Eq k, Eq v) => k -> v -> Bool
 emptyInsertSingleton k v = singleton k v == insert k v empty
 
@@ -28,13 +29,13 @@ alterCanInsert :: (Key k, Eq k, Eq v) => k -> v -> Bool
 alterCanInsert k v = alter (const (Just v)) k empty == singleton k v
 
 checkLaws
-  :: forall k v. (Key k, Arbitrary k, Arbitrary v, Show k, Show v, Eq k, Eq v)
-  => Proxy k
-  -> Proxy v
-  -> IO ()
+    :: forall k v. (Key k, Arbitrary k, Arbitrary v, Show k, Show v, Eq k, Eq v)
+    => Proxy k
+    -> Proxy v
+    -> IO ()
 checkLaws _ _ = do
-  quickCheck $ emptyInsertSingleton @k @v
-  quickCheck $ insertDeleteEmpty @k @v
-  quickCheck $ updateNothingRemoves @k @v
-  quickCheck $ updateJustId @k @v
-  quickCheck $ alterCanInsert @k @v
+    quickCheck $ emptyInsertSingleton @k @v
+    quickCheck $ insertDeleteEmpty @k @v
+    quickCheck $ updateNothingRemoves @k @v
+    quickCheck $ updateJustId @k @v
+    quickCheck $ alterCanInsert @k @v
