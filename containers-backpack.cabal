@@ -17,14 +17,13 @@ extra-doc-files:     CHANGELOG.md
 tested-with:         GHC == 8.2.2
                      GHC == 8.4.4
                      GHC == 8.6.5
-                     GHC == 8.8.1
 
 source-repository head
   type:                git
   location:            https://github.com/kowainik/containers-backpack.git
 
 common common-options
-  build-depends:       base >= 4.10.1.0 && < 4.14
+  build-depends:       base >= 4.10.1.0 && < 4.13
 
   ghc-options:         -Wall
                        -Wincomplete-uni-patterns
@@ -57,12 +56,14 @@ common common-options
 -- signatures for containers
 library sig
   import:              common-options
+  visibility:          public
   hs-source-dirs:      src/sig
   signatures:          Map
 
 -- signature implementation for containers.Map.Strict
 library ordered-strict
   import:              common-options
+  visibility:          public
   hs-source-dirs:      src/ordered-strict
   exposed-modules:     Map.Ord
   reexported-modules:  Map.Ord as Map
@@ -72,6 +73,7 @@ library ordered-strict
 -- signature implementation for containers.IntMap.Strict
 library int-strict
   import:              common-options
+  visibility:          public
   hs-source-dirs:      src/int-strict
   exposed-modules:     Map.Int
   reexported-modules:  Map.Int as Map
@@ -82,6 +84,7 @@ library int-strict
 -- signature implementation for unordered-containers.HashMap.Strict
 library unordered-strict
   import:              common-options
+  visibility:          public
   hs-source-dirs:      src/unordered-strict
   exposed-modules:     Map.Hash
   reexported-modules:  Map.Hash as Map
@@ -89,18 +92,21 @@ library unordered-strict
                      , unordered-containers ^>= 0.2.7.0
   ghc-options:         -fexpose-all-unfoldings
 
--- signature implementation for primitive-containers.Map.Lifted
-library primitive
-  import:              common-options
-  hs-source-dirs:      src/primitive
-  exposed-modules:     Map.Prim
-  reexported-modules:  Map.Prim as Map
-  build-depends:       primitive-containers ^>= 0.4.0
-  ghc-options:         -fexpose-all-unfoldings
+-- TODO: support for primitive containers temporary disabled
+-- -- signature implementation for primitive-containers.Map.Lifted
+-- library primitive
+--   import:              common-options
+--   visibility:          public
+--   hs-source-dirs:      src/primitive
+--   exposed-modules:     Map.Prim
+--   reexported-modules:  Map.Prim as Map
+--   build-depends:       primitive-containers ^>= 0.4.0
+--   ghc-options:         -fexpose-all-unfoldings
 
 -- implementations of various general functions via signatures
 library contrib
   import:              common-options
+  visibility:          public
   hs-source-dirs:      src/contrib
   exposed-modules:     Map.Contrib.Group
   build-depends:       containers-backpack:sig
@@ -108,6 +114,7 @@ library contrib
 -- property laws tests for readonly containers via signatures
 library laws
   import:              common-options
+  visibility:          public
   hs-source-dirs:      src/laws
   exposed-modules:     Map.Laws
   build-depends:       containers-backpack:sig, QuickCheck ^>= 2.13
@@ -115,6 +122,7 @@ library laws
 -- benchmarks in terms of signatures
 library benchmarks
   import:              common-options
+  visibility:          public
   hs-source-dirs:      src/benchmarks
   exposed-modules:     Map.Bench
   build-depends:       containers-backpack:sig, gauge ^>= 0.2.5, relude ^>= 0.5.0
