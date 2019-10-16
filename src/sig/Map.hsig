@@ -1,0 +1,70 @@
+signature Map
+          ( -- * Types
+            Map
+          , Key
+
+            -- * Construction
+          , empty
+          , singleton
+          , fromList
+
+            -- * Query
+          , null
+          , size
+          , member
+          , lookup
+          , lookupDefault
+
+            -- * Conversion
+          , toList
+          , keys
+          , elems
+
+            -- * Update
+          , insert
+          , insertWith
+          , adjust
+          , update
+          , delete
+          , alter
+          ) where
+
+import Prelude hiding (lookup, null)
+
+
+data Map k v
+class Key k
+
+instance (Show k, Show v) => Show (Map k v)
+instance (  Eq k,   Eq v) =>   Eq (Map k v)
+
+-- TODO: construction from corresponding sets
+empty         :: Map k v
+singleton     :: Key k => k -> v -> Map k v
+fromList      :: Key k => [(k, v)] -> Map k v
+
+null          :: Map k v -> Bool
+size          :: Map k v -> Int
+member        :: Key k => k -> Map k a -> Bool
+lookup        :: Key k => k -> Map k v -> Maybe v
+lookupDefault :: Key k => v -> k -> Map k v -> v
+
+insert        :: Key k => k -> v -> Map k v -> Map k v
+insertWith    :: Key k => (v -> v -> v) -> k -> v -> Map k v -> Map k v
+adjust        :: Key k => (a -> a) -> k -> Map k a -> Map k a
+update        :: Key k => (a -> Maybe a) -> k -> Map k a -> Map k a
+delete        :: Key k => k -> Map k v -> Map k v
+alter         :: Key k => (Maybe v -> Maybe v) -> k -> Map k v -> Map k v
+
+-- TODO: these two functions require constraints
+toList :: Key k => Map k v -> [(k, v)]
+keys   :: Key k => Map k v -> [k]
+elems  :: Map k v -> [v]
+
+-- TODO: union, difference, intersection
+-- TODO: folds and traversals
+-- TODO: filters, map
+
+-- infixl 9 !?
+-- (!?) :: Key k => Map k v -> k -> Maybe v
+-- (!?) m k = lookup k m
