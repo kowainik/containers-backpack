@@ -1,7 +1,7 @@
 # containers-backpack
 
 ![backpack 1](https://user-images.githubusercontent.com/4276606/44077109-23f24b62-9fd5-11e8-8069-b6ca9e45db79.png)
-[![MPL-2.0 license](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](https://github.com/kowainik/containers-backpack/blob/master/LICENSE)
+[![MPL-2.0 license](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](https://github.com/kowainik/containers-backpack/blob/main/LICENSE)
 [![Build status](https://secure.travis-ci.org/kowainik/containers-backpack.svg)](https://travis-ci.org/kowainik/containers-backpack)
 
 > _You can't just carry everyone else's hopes and fears around in your backpack and expect to stand up straight._
